@@ -9,15 +9,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module parity_generator
-   #(parameter N_SW = 8,							// number of switches / bits in word
+ #(parameter N_SW = 8,							// number of switches / bits in word
 	parameter N_LED = 8,							// number of segments at display
 	parameter N_LED_AN = 4,						// number of displays
 	  
-	parameter E = 8'b00110001,
-	parameter O = 8'b00000011)
+	parameter E = 8'b00110001,					// even
+	parameter O = 8'b00000011)					// odd
 	  
-    (input wire [N_SW-1:0] 		sw_i,
-	output reg [N_LED-1:0] 		led_o,
+  (input wire [N_SW-1:0] 			sw_i,
+	output reg [N_LED-1:0] 			led_o,
 	output wire [N_LED_AN-1:0] 	led_an_o);
 	  
 	  
@@ -27,10 +27,10 @@ module parity_generator
 	always@ (sw_i) begin : parity_check
 		assign xor_value = ^sw_i;
 		if(xor_value) begin		
-			assign led_o = E;
+			assign led_o = O;
 		end
 		else begin
-			assign led_o = O;
+			assign led_o = E;
 		end
 			
 	end
