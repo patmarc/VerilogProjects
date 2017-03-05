@@ -31,8 +31,7 @@ module parity_generator
 		end
 		else begin
 			assign led_o = O;
-		end
-			
+		end		
 	end
 
 endmodule // parity_generator
