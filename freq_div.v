@@ -6,20 +6,20 @@
 // Description: 
 //////////////////////////////////////////////////////////////////////////////////
 module freq_div
- #(parameter N = 2)			// div by N
+      #(parameter N = 2)			// div by N
  
-  (input wire 	clk_i,
+       (input wire 	clk_i,
 	input wire 	rst_i,
 	output reg 	clk_o);
-	
-	
+
 	integer counter = 0;
+	
 	initial @ (posedge clk_i) begin
 		assign clk_o = 0;
 	end
 	
 	always @ (posedge clk_i) begin
-		if(counter == ((N/2)-1)) begin
+		if(counter == ((N/2)-1)) begin				// for even number
 			counter = 0;
 			if(clk_o == 0) begin
 				assign clk_o = 1;
@@ -29,11 +29,8 @@ module freq_div
 			end
 		end
 		else begin
-			counter = counter +1;
-			
-		end
-		
-		
+			counter = counter +1;	
+		end	
 	end
 
 
