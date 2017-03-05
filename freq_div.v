@@ -6,7 +6,7 @@
 // Description: 
 //////////////////////////////////////////////////////////////////////////////////
 module freq_div
- #(parameter N = 2)			// div by N
+ #(parameter N = 5)			// div by N
  
   (input wire 	clk_i,
 	input wire 	rst_i,
@@ -19,20 +19,38 @@ module freq_div
 	end
 	
 	always @ (posedge clk_i) begin
-		if(counter == ((N/2)-1)) begin
-			counter = 0;
-			if(clk_o == 0) begin
-				assign clk_o = 1;
+		if(N % 2 == 0) begin						//for even numbers
+			if(counter == ((N/2)-1)) begin
+				counter = 0;
+				if(clk_o == 0) begin
+					assign clk_o = 1;
+				end
+				else begin
+					assign clk_o = 0;
+				end
 			end
 			else begin
-				assign clk_o = 0;
+				counter = counter +1;
+			
 			end
 		end
-		else begin
-			counter = counter +1;
+		else begin									//for odd numbers
+			if(counter == ((N/2))) begin
+				
+				if(clk_o == 0) begin
+					assign clk_o = 1;
+					counter = 0;
+					end
+				else begin
+					assign clk_o = 0;
+					counter = 1;
+				end
+			end
+			else begin
+				counter = counter +1;
 			
+			end
 		end
-		
 		
 	end
 
