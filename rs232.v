@@ -8,16 +8,16 @@
 // To do : 				add parity bit, N_BIT_STOP , rst
 //////////////////////////////////////////////////////////////////////////////////
 module rs232
- #(parameter 	N_BIT_STOP = 1)									// number of stop bits 1 or 2 	
+      #(parameter 	N_BIT_STOP = 1)									// number of stop bits 1 or 2 	
  
-  (input wire 			clk_in,
-	input wire 			rst_in,
+       (input wire 		clk_in,
+	input wire 		rst_in,
 	input wire  		rxd_in,
-	input wire			start_flag,
+	input wire		start_flag,
 	output reg [7:0] 	txd_out,
-	output reg			end_flag);
+	output reg		end_flag);
 	
-	reg [5:0] 	bit_nr;
+	reg [5:0] 		bit_nr;
 	reg			bit_start;
 	reg			bit_stop;
 	
@@ -39,5 +39,4 @@ module rs232
 			end
 		end
 	end
-	
 endmodule // rs232
