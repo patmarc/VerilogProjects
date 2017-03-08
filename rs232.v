@@ -6,15 +6,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 module rs232
-  (input wire 			clk_in,
+       (input wire 		clk_in,
 	input wire  		rxd_in,
-	output reg			txd_out);
+	output reg		txd_out);
 	
-	reg [5:0] 	bit_nr;
+	reg [5:0] 		bit_nr;
 	reg			bit_start;
 	reg			bit_stop;
-	reg [7:0]	txd_temp;
-	reg [7:0]	txd_sum;
+	reg [7:0]		txd_temp;
+	reg [7:0]		txd_sum;
 	
 	reg			ctrl_rready;
 	reg			ctrl_tready;
@@ -54,12 +54,9 @@ module rs232
 	
 	always @ (negedge ctrl_wdata) begin	: r_end
 		assign txd_sum = txd_temp + 8'h20;								//sum
-		
 	end
 	
-	
 	//transmitter
-	
 	always @ (negedge ctrl_wdata) begin : t_begin
 		ctrl_tready = 0;
 		bit_nr = 0;
@@ -83,7 +80,6 @@ module rs232
 				end
 			end
 		end
-		
 	end
 	
 endmodule // rs232
